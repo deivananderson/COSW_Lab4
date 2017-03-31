@@ -115,8 +115,8 @@ CREATE TABLE `CONSULTAS` (
   `idCONSULTAS` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_y_hora` datetime NOT NULL,
   `resumen` varchar(45) COLLATE latin1_general_ci NOT NULL,
-  `PACIENTES_id` int(11) NOT NULL DEFAULT '0',
-  `PACIENTES_tipo_id` enum('cc','ce','rc','ti') COLLATE latin1_general_ci NOT NULL DEFAULT 'cc',
+  `PACIENTES_id` int(11) NOT NULL ,
+  `PACIENTES_tipo_id` enum('cc','ce','rc','ti') COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`idCONSULTAS`),
   KEY `fk_CONSULTAS_PACIENTES1` (`PACIENTES_id`,`PACIENTES_tipo_id`),
   CONSTRAINT `fk_CONSULTAS_PACIENTES1` FOREIGN KEY (`PACIENTES_id`, `PACIENTES_tipo_id`) REFERENCES `PACIENTES` (`id`, `tipo_id`) ON DELETE NO ACTION ON UPDATE NO ACTION

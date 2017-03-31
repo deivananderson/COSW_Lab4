@@ -10,9 +10,9 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name="Consultas")
+@Table(name="CONSULTAS")
 public class Consulta  implements java.io.Serializable {
-     @Id
+
      private Integer idConsultas;
 
      private Date fechaYHora;
@@ -25,18 +25,18 @@ public class Consulta  implements java.io.Serializable {
        this.fechaYHora = fechaYHora;
        this.resumen = resumen;
     }
-
-    @Column(name="idConsulta")
+    @Id
+    @GeneratedValue
+    @Column(name="idCONSULTAS" , nullable = false)
     public Integer getIdConsultas() {
         return this.idConsultas;
     }
 
-    @GeneratedValue
     public void setIdConsultas(Integer idConsultas) {
         this.idConsultas = idConsultas;
     }
 
-    @Column(name="fecha_y_hora")
+    @Column(name="fecha_y_hora" , nullable = false)
     public Date getFechaYHora() {
         return this.fechaYHora;
     }
@@ -45,7 +45,7 @@ public class Consulta  implements java.io.Serializable {
         this.fechaYHora = fechaYHora;
     }
 
-    @Column(name="resumen", length=45)
+    @Column(name="resumen", length=45, nullable = false)
     public String getResumen() {
         return this.resumen;
     }

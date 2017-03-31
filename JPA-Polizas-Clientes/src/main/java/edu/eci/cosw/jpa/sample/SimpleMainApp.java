@@ -33,7 +33,15 @@ public class SimpleMainApp {
         SessionFactory sf=getSessionFactory();
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
-        
+
+        ClienteId cId = new ClienteId(1072658858,"cc");
+        Cliente cli = new Cliente(cId, "Deivan Oliva", "Narnia", "5555555");
+        s.saveOrUpdate(cli);
+        TipoPoliza tp = (TipoPoliza) s.load(TipoPoliza.class, 1);
+        PolizaAprobadaId polId = new PolizaAprobadaId(cli.getId().getId(), cli.getId().getTipoId(),tp.getCodigoPoliza());
+        PolizaAprobada polA = new PolizaAprobada(polId, cli, tp, new Date(2017-1900,02,20), new Date(2057-1900,01,01));
+        s.saveOrUpdate(polA);
+
         tx.commit();       
         s.close();
         sf.close();

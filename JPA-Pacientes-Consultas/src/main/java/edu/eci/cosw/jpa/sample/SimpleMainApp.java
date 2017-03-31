@@ -16,6 +16,7 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Consulta;
 import edu.eci.cosw.jpa.sample.model.Paciente;
 import edu.eci.cosw.jpa.sample.model.PacienteId;
 import org.hibernate.Session;
@@ -24,6 +25,9 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -37,7 +41,16 @@ public class SimpleMainApp {
         Transaction tx=s.beginTransaction();
 
         Paciente paciente = (Paciente) s.load(Paciente.class,new PacienteId(1,"cc"));
-        System.out.printf(paciente.getNombre());
+        System.out.println(paciente.getNombre());
+
+        Consulta c = new Consulta();
+        c.setResumen("Nombre: Deivan Anderson");
+        c.setFechaYHora(new Date(2017,02,20));
+        Set<Consulta> consultasP =  paciente.getConsultas();
+        consultasP.add(c);
+        paciente.setConsultas(consultasP);
+        s.saveOrUpdate(paciente);
+
         tx.commit();    
         s.close();
         sf.close();

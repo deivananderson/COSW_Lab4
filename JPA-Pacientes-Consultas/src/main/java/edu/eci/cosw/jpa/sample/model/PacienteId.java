@@ -33,7 +33,7 @@ public class PacienteId  implements java.io.Serializable {
         this.id = id;
     }
 
-    @Column(name="tipo")
+    @Column(name="tipo_id")
     public String getTipoId() {
         return this.tipoId;
     }

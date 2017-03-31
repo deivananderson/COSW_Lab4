@@ -33,7 +33,24 @@ public class SimpleMainApp {
         SessionFactory sf=getSessionFactory();
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
-        
+
+        Estudiante est1 = new Estudiante(2093715, "Deivan Uno");
+        Estudiante est2 = new Estudiante(2093714, "Deivan Dos");
+        Curso cur1 = new Curso(20022017, "Soluciones de Software 2017 - 1", "SOSW");
+        Curso cur2 = new Curso(21022017, "Construcción de Software 2017 - 1", "COSUU");
+
+        Set<Curso> cursos = new HashSet<>();
+        Set<Estudiante> estudiantes = new HashSet<>();
+
+        cursos.add(cur1); cursos.add(cur2);
+        estudiantes.add(est1); estudiantes.add(est2);
+
+        est1.setCursos(cursos); est2.setCursos(cursos);
+        cur1.setEstudianteses(estudiantes); cur2.setEstudianteses(estudiantes);
+
+        s.saveOrUpdate(est1);
+        s.saveOrUpdate(est2);
+
         tx.commit(); 
         s.close();
         sf.close();
